@@ -39,8 +39,11 @@ const LoginForm = () => {
       </h2>
 
       <div className="mb-4">
-        <label className="block text-sm font-medium mb-1">Correo</label>
+        <label htmlFor="correo" className="block text-sm font-medium mb-1">
+          Correo
+        </label>
         <input
+          id="correo"
           type="email"
           className="w-full p-3 rounded-lg bg-white/20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-purple-500"
           value={email}
@@ -53,8 +56,11 @@ const LoginForm = () => {
       </div>
 
       <div className="mb-4">
-        <label className="block text-sm font-medium mb-1">Contraseña</label>
+        <label htmlFor="password" className="block text-sm font-medium mb-1">
+          Contraseña
+        </label>
         <input
+          id="password"
           type="password"
           className="w-full p-3 rounded-lg bg-white/20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-purple-500"
           value={password}
