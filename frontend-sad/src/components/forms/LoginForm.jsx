@@ -21,11 +21,16 @@ const LoginForm = () => {
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate()) {
-      login({ name: "Gonzalo" });
-      navigate("/dashboard");
+    if (!validate()) return;
+    try {
+      const result = await login(email, password); // 👈 Captura el resultado
+      if (result?.user) {
+        navigate("/dashboard"); // 👈 Navega solo si login funcionó
+      }
+    } catch (error) {
+      setErrors({ general: error.message });
     }
   };
 
@@ -80,6 +85,10 @@ const LoginForm = () => {
           ¿Olvidaste tu contraseña?
         </Link>
       </div>
+
+      {errors.general && (
+        <p className="text-red-400 text-sm mt-1">{errors.general}</p>
+      )}
 
       <button
         type="submit"

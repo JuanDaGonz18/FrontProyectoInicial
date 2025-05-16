@@ -4,6 +4,27 @@ import { AuthProvider } from "../context/AuthContext";
 import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
 
+beforeAll(() => {
+  global.fetch = vi.fn((url, options) => {
+    if (url.includes("/api/auth/login")) {
+      return Promise.resolve({
+        ok: true,
+        json: () =>
+          Promise.resolve({
+            user: { email: "usuario@correo.com", nombre: "Usuario" },
+            accessToken: "fake-token",
+          }),
+      });
+    }
+    // Puedes agregar más mocks según tus endpoints
+    return Promise.reject(new Error("fetch failed"));
+  });
+});
+
+afterAll(() => {
+  global.fetch = undefined;
+});
+
 describe("Flujo de login (integración)", () => {
   it("redirige al Dashboard luego de iniciar sesión exitosamente", async () => {
     render(
@@ -29,6 +50,7 @@ describe("Flujo de login (integración)", () => {
     fireEvent.click(screen.getByRole("button", { name: /entrar/i }));
 
     // Verificar redirección al Dashboard
-    expect(await screen.findByText(/bienvenido/i)).toBeInTheDocument();
+    const textos = await screen.findAllByText(/bienvenido/i);
+    expect(textos.length).toBeGreaterThan(0);
   });
 });
