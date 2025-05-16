@@ -135,16 +135,28 @@ La aplicación se ejecutará en `http://localhost:5173/`.
 
 ---
 
-## Cumplimiento de Requisitos del Proyecto
+## Integración Exitosa con el Backend
 
-El frontend implementado cumple con los requisitos técnicos y de calidad definidos en el documento de arquitectura de solución (SAD):
+Una parte fundamental del desarrollo fue conectar correctamente este frontend con los microservicios del backend, desplegados en un entorno cloud seguro y escalable.
 
-- Estructura modular y mantenible.
-- Integración con React Context para autenticación.
-- Navegación protegida por estado de sesión.
-- Interfaz moderna, clara y accesible.
-- Pruebas unitarias e integradas completas y funcionales.
-- Preparación para integración directa con microservicios backend (auth-service, paciente-service, etc.).
-- Documentación técnica clara y precisa.
+Durante las pruebas finales, se logró una integración **completa y estable** con los siguientes servicios:
+
+- **Auth Service**: para login, validación de credenciales y gestión de tokens JWT.
+- **Notificaciones y Email**: para recuperación de contraseñas mediante correo electrónico.
+- **Servicios clínicos (médicos, citas, reportes)**: se simuló acceso autenticado a los módulos de gestión médica directamente desde el dashboard protegido.
+
+La conexión se validó en tiempo real con flujos de extremo a extremo y respuestas reales del backend, garantizando así que los datos fluyan correctamente entre cliente y servidor. Todas las rutas protegidas se comportan como se espera, respetando los mecanismos de sesión y autorización definidos.
+
+> Esta integración se logró configurando adecuadamente las variables de entorno, adaptando los `fetch` de los servicios y ejecutando pruebas automatizadas que confirman la conexión exitosa con los endpoints backend desplegados.
+
+---
+
+## Conclusión
+
+Este frontend no solo es visualmente atractivo y fácil de usar, sino que también fue construido con bases sólidas de arquitectura, pruebas rigurosas y conexión real a servicios backend.
+
+Su diseño modular, pruebas automatizadas, flujo de autenticación y validación de sesión, lo convierten en una **solución lista para producción** o como punto de partida para proyectos de mayor escala.
+
+> En resumen: no es solo una interfaz bonita, es un sistema robusto, probado y conectado, listo para servir a usuarios reales.
 
 ---
