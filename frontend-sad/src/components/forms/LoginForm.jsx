@@ -73,11 +73,11 @@ const LoginForm = () => {
           placeholder="********"
         />
         {errors.password && (
-          <p className="text-red-400 text-sm mt-1">{errors.password}</p>
+          <><p className="text-red-400 text-sm mt-1">{errors.password}</p><p className="text-red-400 text-sm mt-1">{errors.password}</p></>
         )}
       </div>
 
-      <div className="text-right mb-4">
+      <div className="w-full px-2 text-right mb-6">
         <Link
           to="/forgot-password"
           className="text-sm text-purple-300 hover:underline"
@@ -87,15 +87,22 @@ const LoginForm = () => {
       </div>
 
       {errors.general && (
-        <p className="text-red-400 text-sm mt-1">{errors.general}</p>
+        <p className="text-red-400 text-sm mb-4">{errors.general}</p>
       )}
 
       <button
         type="submit"
-        className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded-lg shadow-lg transition-all duration-300"
+        className="w-2/3 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-lg shadow-lg transition-all duration-300 mb-4 mx-auto flex items-center justify-center"
       >
         Entrar
       </button>
+
+      <p className="text-center text-sm text-purple-200 mt-4">
+        ¿No tienes una cuenta?{" "}
+        <Link to="/register" className="underline hover:text-purple-400">
+          Regístrate
+        </Link>
+      </p>
     </form>
   );
 };
